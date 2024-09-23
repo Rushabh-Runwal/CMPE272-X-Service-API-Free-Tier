@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h2 {
+            color: #1DA1F2;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #1DA1F2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px 0px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0c85d0;
+        }
+        a {
+            color: #1DA1F2;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .delete {
+            color: #AA4A44;
+        }
+        .create  {
+            color: #4BB543;
+        }
+        .user_details {
+            color: #1DA1F2;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<h2>Twitter Service</h2>
+<p>Welcome to the Twitter Service!</p>
+<p>This service allows you to create and delete tweets.</p>
+<p>To create a tweet, enter the tweet content in the Create Tweet section below.</p>
+<p>To delete a tweet, enter the tweet-id in the Delete Tweet section below.</p>
+<p>To view tweets, visit the <a href="https://x.com/rushabh22runwal">Tweets</a> page.</p>
+
+<h2>Create Tweet</h2>
+<form action="/create_tweet" method="post">
+    <textarea name="tweet_content" placeholder="Enter your tweet..."></textarea><br><br>
+    <input type="submit" value="Tweet">
+</form>
+
+<h2>Delete Tweet</h2>
+<form action="/delete_tweet" method="post">
+    <input type="text" name="tweet_id" placeholder="Tweet-id">
+    <input type="submit" value="Delete Tweet">
+</form>
+
+<h2>Retrive User Info</h2>
+<form action="/get_user_by_username" method="get">
+    <input type="text" name="username" placeholder="username">
+    <input type="submit" value="Get =User">
+</form>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>
